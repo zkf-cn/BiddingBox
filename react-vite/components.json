@@ -1,0 +1,14 @@
+{
+  "$schema": "https://sparkdesign.dev/schemas/components.json",
+  "style": "notion",
+  "appearance": "light",
+  "theme": "spark-notion",
+  "sourceOwned": true,
+  "aliases": {
+    "ui": "@/components/ui",
+    "components": "@/components",
+    "tokens": "@/sparkdesign-tokens.css",
+    "styles": "@/styles.css"
+  },
+  "notes": "sparkdesign runtime 包在当前构建环境不可验证，按 Spark Design source-owned 契约落地：组件位于 @/components/ui/*，token 层位于 @/sparkdesign-tokens.css，根节点通过 data-theme/data-style 声明。"
+}

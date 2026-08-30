@@ -1,0 +1,22 @@
+{
+  "name": "bidding-treasure-box",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "招标百宝箱 —— 招标代理服务费计算与定额、专家分类查询工具",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev:design": "vite --open /canvas-design.html"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  },
+  "notes": "组件层采用 source-owned @/components/ui/* 实现 Spark Design 契约（data-theme/data-style + token 驱动），以避免对不可验证的外部组件包的硬依赖。"
+}

@@ -1,0 +1,261 @@
+{
+  "designSystemApproved": false,
+  "activePage": "index.html",
+  "version": 1,
+  "createdAt": "2026-08-29T04:30:22.990Z",
+  "updatedAt": "2026-08-30T05:06:51.313Z",
+  "frames": [
+    {
+      "id": "frame",
+      "kind": "localhost",
+      "title": "招标百宝箱 · 实时预览",
+      "url": "http://localhost:5273/",
+      "designUrl": "http://localhost:5273/canvas-design.html",
+      "previewUrl": "http://localhost:5273/",
+      "route": "/",
+      "code": {
+        "root": "react-vite",
+        "route": "/",
+        "packageName": "react-vite",
+        "files": [
+          {
+            "path": "react-vite/components.json",
+            "role": "config"
+          },
+          {
+            "path": "react-vite/dist/assets/index-CKi73DZl.css",
+            "role": "style"
+          },
+          {
+            "path": "react-vite/dist/assets/index-DjnmZVpl.js",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/jsconfig.json",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/package-lock.json",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/package.json",
+            "role": "config"
+          },
+          {
+            "path": "react-vite/src/App.jsx",
+            "role": "route",
+            "symbol": "App"
+          },
+          {
+            "path": "react-vite/src/components/ui.jsx",
+            "role": "component"
+          },
+          {
+            "path": "react-vite/src/data/bidding.js",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/data/feeStandards.js",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/data/fee_standards.js",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/main.jsx",
+            "role": "entry"
+          },
+          {
+            "path": "react-vite/src/pages/AgentFeeCalculator.jsx",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/pages/CalcHub.jsx",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/pages/ExpertQuery.jsx",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/pages/Home.jsx",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/pages/Laws.jsx",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/pages/QuotaQuery.jsx",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/qoder-design-runtime.jsx",
+            "role": "other"
+          },
+          {
+            "path": "react-vite/src/sparkdesign-tokens.css",
+            "role": "style"
+          },
+          {
+            "path": "react-vite/src/styles.css",
+            "role": "style"
+          },
+          {
+            "path": "react-vite/vite.config.js",
+            "role": "config"
+          }
+        ],
+        "devServer": {
+          "port": 5273,
+          "url": "http://localhost:5273"
+        }
+      },
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 900,
+      "status": "active",
+      "source": "imported",
+      "createdAt": "2026-08-29T06:47:20.601Z",
+      "updatedAt": "2026-08-29T06:47:20.601Z"
+    }
+  ],
+  "activeFrameId": "frame",
+  "tweaks": [
+    {
+      "control": "preset",
+      "group": "外观",
+      "label": "外观主题",
+      "presetOptions": [
+        {
+          "label": "Linear 暗（默认）",
+          "patches": [
+            {
+              "value": "#08090a",
+              "variable": "--seed-bg"
+            },
+            {
+              "value": "#f7f8f8",
+              "variable": "--seed-fg"
+            },
+            {
+              "value": "#5e6ad2",
+              "variable": "--seed-primary"
+            },
+            {
+              "value": "#7170ff",
+              "variable": "--seed-accent"
+            },
+            {
+              "value": "#191a1b",
+              "variable": "--seed-surface"
+            },
+            {
+              "value": "#0f1011",
+              "variable": "--seed-ink"
+            },
+            {
+              "value": "8px",
+              "variable": "--seed-radius"
+            }
+          ],
+          "value": "dark"
+        },
+        {
+          "label": "Linear 光",
+          "patches": [
+            {
+              "value": "#f7f8f8",
+              "variable": "--seed-bg"
+            },
+            {
+              "value": "#08090a",
+              "variable": "--seed-fg"
+            },
+            {
+              "value": "#5e6ad2",
+              "variable": "--seed-primary"
+            },
+            {
+              "value": "#5e6ad2",
+              "variable": "--seed-accent"
+            },
+            {
+              "value": "#f3f4f5",
+              "variable": "--seed-surface"
+            },
+            {
+              "value": "#ffffff",
+              "variable": "--seed-ink"
+            },
+            {
+              "value": "8px",
+              "variable": "--seed-radius"
+            }
+          ],
+          "value": "light"
+        },
+        {
+          "label": "高对比暗",
+          "patches": [
+            {
+              "value": "#050506",
+              "variable": "--seed-bg"
+            },
+            {
+              "value": "#ffffff",
+              "variable": "--seed-fg"
+            },
+            {
+              "value": "#7170ff",
+              "variable": "--seed-primary"
+            },
+            {
+              "value": "#828fff",
+              "variable": "--seed-accent"
+            },
+            {
+              "value": "#141416",
+              "variable": "--seed-surface"
+            },
+            {
+              "value": "#0a0a0c",
+              "variable": "--seed-ink"
+            },
+            {
+              "value": "8px",
+              "variable": "--seed-radius"
+            }
+          ],
+          "value": "high-contrast"
+        }
+      ],
+      "value": "dark",
+      "variable": "--appearance-preset"
+    },
+    {
+      "control": "slider",
+      "group": "形态",
+      "label": "圆角尺度",
+      "max": 12,
+      "min": 4,
+      "step": 2,
+      "unit": "px",
+      "value": "8px",
+      "variable": "--seed-radius"
+    },
+    {
+      "control": "slider",
+      "group": "形态",
+      "label": "布局密度",
+      "max": 1.2,
+      "min": 0.8,
+      "step": 0.05,
+      "value": "1",
+      "variable": "--density"
+    }
+  ]
+}
