@@ -3,6 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // 在首次绘制前确定主题，避免浅/暗闪烁（FOUC）
+      (function () {
+        try {
+          var t = localStorage.getItem("biddingbox-theme");
+          if (t !== "light" && t !== "dark") {
+            t =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
     <meta
       name="description"
       content="招标百宝箱：招标代理服务费差累进测算、常用定额速查、评标专家分类检索，为招标代理与投标人打造的一站式工具。"
@@ -16,8 +32,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-CEj_9yEd.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BvLUkm_d.css">
+    <script type="module" crossorigin src="./assets/index-DMcXwOZ_.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DO8z86xH.css">
   </head>
   <body>
     <div id="root" data-component="App Mount" data-od-id="app-mount"></div>
