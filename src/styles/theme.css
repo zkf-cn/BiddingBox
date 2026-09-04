@@ -1,0 +1,1486 @@
+/**
+ * 主题变量 —— 移植自 Vben Admin 5 设计令牌（packages/@core/base/design/src/design-tokens）
+ * 命名与取值对齐 Vben shadcn token；主色采用 Vben 默认 hsl(212 100% 45%)。
+ * 浅/深通过 <html data-theme="light|dark"> 或 .dark 切换；
+ * 彩色预设通过 <html data-accent="sky-blue|green|..."> 切换（与 data-theme 正交）。
+ * 所有组件只引用变量，不写死颜色。
+ */
+
+:root, :root[data-theme='light'] {
+  --popup-z-index: 2000;
+  --font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue',
+    arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --background: hsl(0 0% 100%);
+  --background-deep: hsl(216 20.11% 95.47%);
+  --foreground: hsl(210 6% 21%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222.2 84% 4.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222.2 84% 4.9%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --primary: hsl(212 100% 45%);
+  --primary-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.33 100% 65.1%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --info: hsl(240, 5%, 96%);
+  --info-foreground: hsl(220, 4%, 58%);
+  --success: hsl(144 57% 58%);
+  --success-foreground: hsl(0 0% 98%);
+  --warning: hsl(42 84% 61%);
+  --warning-foreground: hsl(0 0% 98%);
+  --secondary: hsl(240 5% 96%);
+  --secondary-foreground: hsl(240 6% 10%);
+  --accent: hsl(240 5% 96%);
+  --accent-dark: hsl(216 14% 93%);
+  --accent-darker: hsl(216 11% 91%);
+  --accent-lighter: hsl(240 0% 98%);
+  --accent-hover: hsl(200deg 10% 90%);
+  --accent-foreground: hsl(240 6% 10%);
+  --heavy: hsl(192deg 9.43% 89.61%);
+  --heavy-foreground: var(--accent-foreground);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240deg 5.88% 90%);
+  --input-placeholder: hsl(217 10.6% 65%);
+  --input-background: hsl(0 0% 100%);
+  --ring: hsl(222.2 84% 4.9%);
+  --radius: 0.5rem;
+  --overlay: hsl(0 0% 0% / 45%);
+  --overlay-content: hsl(0 0% 95% / 45%);
+  --font-size-base: 16px;
+  --menu-font-size: calc(var(--font-size-base) * 0.875);
+  --sidebar: hsl(0 0% 100%);
+  --sidebar-deep: hsl(0 0% 100%);
+  --menu: var(--sidebar);
+  --header: hsl(0 0% 100%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'], .dark {
+  --background: hsl(222.34deg 10.43% 12.27%);
+  --background-deep: hsl(220deg 13.06% 9%);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(222.34deg 10.43% 12.27%);
+  /* --card 与 --background 相同（Vben dark.css 生效值）；
+     被注释的备用值 222.2 84% 4.9% 会导致卡片比背景更黑，切勿使用 */
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(0 0% 14.2%);
+  --popover-foreground: hsl(210 40% 98%);
+  --muted: hsl(240 3.7% 15.9%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  /* --primary 在默认暗色下不覆盖（Vben dark.css 已注释掉 245 82% 67%），
+     保持浅色默认蓝 hsl(212 100% 45%)；仅彩色预设暗色块才覆盖 */
+  --primary-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --info: hsl(180, 1.54%, 12.75%);
+  --info-foreground: hsl(220, 4%, 58%);
+  --success: hsl(144 57% 58%);
+  --success-foreground: hsl(0 0% 98%);
+  --warning: hsl(42 84% 61%);
+  --warning-foreground: hsl(0 0% 98%);
+  --secondary: hsl(240 5% 17%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --accent: hsl(216 5% 19%);
+  --accent-dark: hsl(240 0% 22%);
+  --accent-darker: hsl(240 0% 26%);
+  --accent-lighter: hsl(216 5% 12%);
+  --accent-hover: hsl(216 5% 24%);
+  --accent-foreground: hsl(0 0% 98%);
+  --heavy: hsl(216 5% 24%);
+  --heavy-foreground: var(--accent-foreground);
+  --border: hsl(240 3.7% 22%);
+  --input: hsl(0deg 0% 100% / 10%);
+  --input-placeholder: hsl(218deg 11% 65%);
+  --input-background: hsl(0deg 0% 100% / 5%);
+  --ring: hsl(222.2 84% 4.9%);
+  --radius: 0.5rem;
+  --overlay: hsl(0deg 0% 0% / 40%);
+  --overlay-content: hsl(0deg 0% 0% / 40%);
+  --font-size-base: 16px;
+  --sidebar: hsl(222.34deg 10.43% 12.27%);
+  --sidebar-deep: hsl(220deg 13.06% 9%);
+  --menu: var(--sidebar);
+  --header: hsl(222.34deg 10.43% 12.27%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='sky-blue'], :root[data-accent='sky-blue'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(222.2 84% 4.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222.2 84% 4.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222.2 84% 4.9%);
+  --primary-foreground: hsl(210 40% 98%);
+  --secondary: hsl(210 40% 96.1%);
+  --secondary-foreground: hsl(222.2 47.4% 11.2%);
+  --muted: hsl(210 40% 96.1%);
+  --muted-foreground: hsl(215.4 16.3% 46.9%);
+  --accent: hsl(210 40% 96.1%);
+  --accent-foreground: hsl(222.2 47.4% 11.2%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(214.3 31.8% 91.4%);
+  --input: hsl(214.3 31.8% 91.4%);
+  --ring: hsl(221.2 83.2% 53.3%);
+  --primary: hsl(231 98% 65%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='sky-blue'], .dark[data-accent='sky-blue'] {
+  --background: hsl(222.2 84% 4.9%);
+  --background-deep: var(--background);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(222.2 84% 4.9%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(222.2 84% 4.9%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary-foreground: hsl(210 20% 98%);
+  --secondary: hsl(217.2 32.6% 17.5%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(217.2 32.6% 17.5%);
+  --muted-foreground: hsl(215 20.2% 65.1%);
+  --accent: hsl(217.2 32.6% 17.5%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(217.2 32.6% 17.5%);
+  --input: hsl(217.2 32.6% 17.5%);
+  --ring: hsl(224.3 76.3% 48%);
+  --sidebar: hsl(222.2 84% 4.9%);
+  --sidebar-deep: hsl(222.2 84% 4.9%);
+  --header: hsl(222.2 84% 4.9%);
+  --primary: hsl(231 98% 65%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='deep-blue'], :root[data-accent='deep-blue'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(222.2 84% 4.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222.2 84% 4.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222.2 84% 4.9%);
+  --primary-foreground: hsl(210 40% 98%);
+  --secondary: hsl(210 40% 96.1%);
+  --secondary-foreground: hsl(222.2 47.4% 11.2%);
+  --muted: hsl(210 40% 96.1%);
+  --muted-foreground: hsl(215.4 16.3% 46.9%);
+  --accent: hsl(210 40% 96.1%);
+  --accent-foreground: hsl(222.2 47.4% 11.2%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(214.3 31.8% 91.4%);
+  --input: hsl(214.3 31.8% 91.4%);
+  --ring: hsl(221.2 83.2% 53.3%);
+  --primary: hsl(211 91% 39%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='deep-blue'], .dark[data-accent='deep-blue'] {
+  --background: hsl(222.2 84% 4.9%);
+  --background-deep: var(--background);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(222.2 84% 4.9%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(222.2 84% 4.9%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary-foreground: hsl(210 20% 98%);
+  --secondary: hsl(217.2 32.6% 17.5%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(217.2 32.6% 17.5%);
+  --muted-foreground: hsl(215 20.2% 65.1%);
+  --accent: hsl(217.2 32.6% 17.5%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(217.2 32.6% 17.5%);
+  --input: hsl(217.2 32.6% 17.5%);
+  --ring: hsl(224.3 76.3% 48%);
+  --sidebar: hsl(222.2 84% 4.9%);
+  --sidebar-deep: hsl(222.2 84% 4.9%);
+  --header: hsl(222.2 84% 4.9%);
+  --primary: hsl(211 91% 39%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='green'], :root[data-accent='green'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary-foreground: hsl(355.7 100% 97.3%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(142.1 76.2% 36.3%);
+  --primary: hsl(161 90% 43%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='green'], .dark[data-accent='green'] {
+  --background: hsl(20 14.3% 4.1%);
+  --background-deep: var(--background);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(24 9.8% 6%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(0 0% 9%);
+  --popover-foreground: hsl(0 0% 95%);
+  --primary-foreground: hsl(210 20% 98%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(0 0% 15%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --accent: hsl(12 6.5% 15.1%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(0 85.7% 97.3%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --ring: hsl(142.4 71.8% 29.2%);
+  --sidebar: hsl(20 14.3% 4.1%);
+  --sidebar-deep: hsl(20 14.3% 4.1%);
+  --header: hsl(20 14.3% 4.1%);
+  --primary: hsl(161 90% 43%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='deep-green'], :root[data-accent='deep-green'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary-foreground: hsl(355.7 100% 97.3%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(142.1 76.2% 36.3%);
+  --primary: hsl(181 84% 32%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='deep-green'], .dark[data-accent='deep-green'] {
+  --background: hsl(20 14.3% 4.1%);
+  --background-deep: var(--background);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(24 9.8% 6%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(0 0% 9%);
+  --popover-foreground: hsl(0 0% 95%);
+  --primary-foreground: hsl(210 20% 98%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(0 0% 15%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --accent: hsl(12 6.5% 15.1%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(0 85.7% 97.3%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --ring: hsl(142.4 71.8% 29.2%);
+  --sidebar: hsl(20 14.3% 4.1%);
+  --sidebar-deep: hsl(20 14.3% 4.1%);
+  --header: hsl(20 14.3% 4.1%);
+  --primary: hsl(181 84% 32%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='violet'], :root[data-accent='violet'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(224 71.4% 4.1%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(224 71.4% 4.1%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(224 71.4% 4.1%);
+  --primary-foreground: hsl(210 20% 98%);
+  --secondary: hsl(220 14.3% 95.9%);
+  --secondary-foreground: hsl(220.9 39.3% 11%);
+  --muted: hsl(220 14.3% 95.9%);
+  --muted-foreground: hsl(220 8.9% 46.1%);
+  --accent: hsl(220 14.3% 95.9%);
+  --accent-foreground: hsl(220.9 39.3% 11%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 20% 98%);
+  --border: hsl(220 13% 91%);
+  --input: hsl(220 13% 91%);
+  --ring: hsl(262.1 83.3% 57.8%);
+  --primary: hsl(245 82% 67%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='violet'], .dark[data-accent='violet'] {
+  --background: hsl(224 71.4% 4.1%);
+  --background-deep: var(--background);
+  --foreground: hsl(210 20% 98%);
+  --card: hsl(224 71.4% 4.1%);
+  --card-foreground: hsl(210 20% 98%);
+  --popover: hsl(224 71.4% 4.1%);
+  --popover-foreground: hsl(210 20% 98%);
+  --primary-foreground: hsl(210 20% 98%);
+  --secondary: hsl(215 27.9% 16.9%);
+  --secondary-foreground: hsl(210 20% 98%);
+  --muted: hsl(215 27.9% 16.9%);
+  --muted-foreground: hsl(217.9 10.6% 64.9%);
+  --accent: hsl(215 27.9% 16.9%);
+  --accent-foreground: hsl(210 20% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(210 20% 98%);
+  --border: hsl(215 27.9% 16.9%);
+  --input: hsl(215 27.9% 16.9%);
+  --ring: hsl(263.4 70% 50.4%);
+  --sidebar: hsl(224 71.4% 4.1%);
+  --sidebar-deep: hsl(224 71.4% 4.1%);
+  --header: hsl(224 71.4% 4.1%);
+  --primary: hsl(245 82% 67%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='pink'], :root[data-accent='pink'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary-foreground: hsl(355.7 100% 97.3%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(346.8 77.2% 49.8%);
+  --primary: hsl(347 77% 60%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='pink'], .dark[data-accent='pink'] {
+  --background: hsl(20 14.3% 4.1%);
+  --background-deep: var(--background);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(0 0% 9%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(0 0% 9%);
+  --popover-foreground: hsl(0 0% 95%);
+  --primary-foreground: hsl(355.7 100% 97.3%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(0 0% 15%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --accent: hsl(12 6.5% 15.1%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(0 85.7% 97.3%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --ring: hsl(346.8 77.2% 49.8%);
+  --sidebar: hsl(20 14.3% 4.1%);
+  --sidebar-deep: hsl(20 14.3% 4.1%);
+  --header: hsl(20 14.3% 4.1%);
+  --primary: hsl(347 77% 60%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='rose'], :root[data-accent='rose'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary-foreground: hsl(355.7 100% 97.3%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(346.8 77.2% 49.8%);
+  --primary: hsl(0 75% 42%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='rose'], .dark[data-accent='rose'] {
+  --background: hsl(0 0% 3.9%);
+  --background-deep: var(--background);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(0 0% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(0 0% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary-foreground: hsl(0 85.7% 97.3%);
+  --secondary: hsl(0 0% 14.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(0 0% 14.9%);
+  --muted-foreground: hsl(0 0% 63.9%);
+  --accent: hsl(0 0% 14.9%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(0 0% 14.9%);
+  --input: hsl(0 0% 14.9%);
+  --ring: hsl(0 72.2% 50.6%);
+  --sidebar: hsl(0 0% 3.9%);
+  --sidebar-deep: hsl(0 0% 3.9%);
+  --header: hsl(0 0% 3.9%);
+  --primary: hsl(0 75% 42%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='orange'], :root[data-accent='orange'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(20 14.3% 4.1%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(20 14.3% 4.1%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(20 14.3% 4.1%);
+  --primary-foreground: hsl(60 9.1% 97.8%);
+  --secondary: hsl(60 4.8% 95.9%);
+  --secondary-foreground: hsl(24 9.8% 10%);
+  --muted: hsl(60 4.8% 95.9%);
+  --muted-foreground: hsl(25 5.3% 44.7%);
+  --accent: hsl(60 4.8% 95.9%);
+  --accent-foreground: hsl(24 9.8% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(60 9.1% 97.8%);
+  --border: hsl(20 5.9% 90%);
+  --input: hsl(20 5.9% 90%);
+  --ring: hsl(24.6 95% 53.1%);
+  --primary: hsl(18 89% 40%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='orange'], .dark[data-accent='orange'] {
+  --background: hsl(20 14.3% 4.1%);
+  --background-deep: var(--background);
+  --foreground: hsl(60 9.1% 97.8%);
+  --card: hsl(20 14.3% 4.1%);
+  --card-foreground: hsl(60 9.1% 97.8%);
+  --popover: hsl(20 14.3% 4.1%);
+  --popover-foreground: hsl(60 9.1% 97.8%);
+  --primary-foreground: hsl(60 9.1% 97.8%);
+  --secondary: hsl(12 6.5% 15.1%);
+  --secondary-foreground: hsl(60 9.1% 97.8%);
+  --muted: hsl(12 6.5% 15.1%);
+  --muted-foreground: hsl(24 5.4% 63.9%);
+  --accent: hsl(12 6.5% 15.1%);
+  --accent-foreground: hsl(60 9.1% 97.8%);
+  --destructive: hsl(0 72.2% 50.6%);
+  --destructive-foreground: hsl(60 9.1% 97.8%);
+  --border: hsl(12 6.5% 15.1%);
+  --input: hsl(12 6.5% 15.1%);
+  --ring: hsl(20.5 90.2% 48.2%);
+  --sidebar: hsl(20 14.3% 4.1%);
+  --sidebar-deep: hsl(20 14.3% 4.1%);
+  --header: hsl(20 14.3% 4.1%);
+  --primary: hsl(18 89% 40%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='yellow'], :root[data-accent='yellow'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(20 14.3% 4.1%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(20 14.3% 4.1%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(20 14.3% 4.1%);
+  --primary-foreground: hsl(26 83.3% 14.1%);
+  --secondary: hsl(60 4.8% 95.9%);
+  --secondary-foreground: hsl(24 9.8% 10%);
+  --muted: hsl(60 4.8% 95.9%);
+  --muted-foreground: hsl(25 5.3% 44.7%);
+  --accent: hsl(60 4.8% 95.9%);
+  --accent-foreground: hsl(24 9.8% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(60 9.1% 97.8%);
+  --border: hsl(20 5.9% 90%);
+  --input: hsl(20 5.9% 90%);
+  --ring: hsl(20 14.3% 4.1%);
+  --primary: hsl(42 84% 61%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='yellow'], .dark[data-accent='yellow'] {
+  --background: hsl(20 14.3% 4.1%);
+  --background-deep: var(--background);
+  --foreground: hsl(60 9.1% 97.8%);
+  --card: hsl(20 14.3% 4.1%);
+  --card-foreground: hsl(60 9.1% 97.8%);
+  --popover: hsl(20 14.3% 4.1%);
+  --popover-foreground: hsl(60 9.1% 97.8%);
+  --primary-foreground: hsl(26 83.3% 14.1%);
+  --secondary: hsl(12 6.5% 15.1%);
+  --secondary-foreground: hsl(60 9.1% 97.8%);
+  --muted: hsl(12 6.5% 15.1%);
+  --muted-foreground: hsl(24 5.4% 63.9%);
+  --accent: hsl(12 6.5% 15.1%);
+  --accent-foreground: hsl(60 9.1% 97.8%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(60 9.1% 97.8%);
+  --border: hsl(12 6.5% 15.1%);
+  --input: hsl(12 6.5% 15.1%);
+  --ring: hsl(35.5 91.7% 32.9%);
+  --sidebar: hsl(20 14.3% 4.1%);
+  --sidebar-deep: hsl(20 14.3% 4.1%);
+  --header: hsl(20 14.3% 4.1%);
+  --primary: hsl(42 84% 61%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='zinc'], :root[data-accent='zinc'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(240 5.9% 10%);
+  --primary: hsl(240 5% 26%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='zinc'], .dark[data-accent='zinc'] {
+  --background: hsl(240 10% 3.9%);
+  --background-deep: var(--background);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(240 10% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(240 10% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary-foreground: hsl(240 5.9% 10%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(240 3.7% 15.9%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --accent: hsl(240 3.7% 15.9%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --ring: hsl(240 4.9% 83.9%);
+  --sidebar: hsl(240 10% 3.9%);
+  --sidebar-deep: hsl(240 10% 3.9%);
+  --header: hsl(240 10% 3.9%);
+  --primary: hsl(0 0% 98%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='neutral'], :root[data-accent='neutral'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(0 0% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 3.9%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(0 0% 96.1%);
+  --secondary-foreground: hsl(0 0% 9%);
+  --muted: hsl(0 0% 96.1%);
+  --muted-foreground: hsl(0 0% 45.1%);
+  --accent: hsl(0 0% 96.1%);
+  --accent-foreground: hsl(0 0% 9%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(0 0% 89.8%);
+  --input: hsl(0 0% 89.8%);
+  --ring: hsl(0 0% 3.9%);
+  --primary: hsl(0 0% 25%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='neutral'], .dark[data-accent='neutral'] {
+  --background: hsl(0 0% 3.9%);
+  --background-deep: var(--background);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(0 0% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(0 0% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary-foreground: hsl(0 0% 9%);
+  --secondary: hsl(0 0% 14.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(0 0% 14.9%);
+  --muted-foreground: hsl(0 0% 63.9%);
+  --accent: hsl(0 0% 14.9%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(0 0% 14.9%);
+  --input: hsl(0 0% 14.9%);
+  --ring: hsl(0 0% 83.1%);
+  --sidebar: hsl(0 0% 3.9%);
+  --sidebar-deep: hsl(0 0% 3.9%);
+  --header: hsl(0 0% 3.9%);
+  --primary: hsl(0 0% 98%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='slate'], :root[data-accent='slate'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(222.2 84% 4.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222.2 84% 4.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222.2 84% 4.9%);
+  --primary-foreground: hsl(210 40% 98%);
+  --secondary: hsl(210 40% 96.1%);
+  --secondary-foreground: hsl(222.2 47.4% 11.2%);
+  --muted: hsl(210 40% 96.1%);
+  --muted-foreground: hsl(215.4 16.3% 46.9%);
+  --accent: hsl(210 40% 96.1%);
+  --accent-foreground: hsl(222.2 47.4% 11.2%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(214.3 31.8% 91.4%);
+  --input: hsl(214.3 31.8% 91.4%);
+  --ring: hsl(222.2 84% 4.9%);
+  --primary: hsl(215 25% 27%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='slate'], .dark[data-accent='slate'] {
+  --background: hsl(222.2 84% 4.9%);
+  --background-deep: var(--background);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(222.2 84% 4.9%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(222.2 84% 4.9%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary-foreground: hsl(222.2 47.4% 11.2%);
+  --secondary: hsl(217.2 32.6% 17.5%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(217.2 32.6% 17.5%);
+  --muted-foreground: hsl(215 20.2% 65.1%);
+  --accent: hsl(217.2 32.6% 17.5%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(217.2 32.6% 17.5%);
+  --input: hsl(217.2 32.6% 17.5%);
+  --ring: hsl(212.7 26.8% 83.9);
+  --sidebar: hsl(222.2 84% 4.9%);
+  --sidebar-deep: hsl(222.2 84% 4.9%);
+  --header: hsl(222.2 84% 4.9%);
+  --primary: hsl(0 0% 98%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}
+[data-accent='gray'], :root[data-accent='gray'] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(224 71.4% 4.1%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(224 71.4% 4.1%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(224 71.4% 4.1%);
+  --primary-foreground: hsl(210 20% 98%);
+  --secondary: hsl(220 14.3% 95.9%);
+  --secondary-foreground: hsl(220.9 39.3% 11%);
+  --muted: hsl(220 14.3% 95.9%);
+  --muted-foreground: hsl(220 8.9% 46.1%);
+  --accent: hsl(220 14.3% 95.9%);
+  --accent-foreground: hsl(220.9 39.3% 11%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 20% 98%);
+  --border: hsl(220 13% 91%);
+  --input: hsl(220 13% 91%);
+  --ring: hsl(224 71.4% 4.1%);
+  --primary: hsl(217 19% 27%);
+
+  /* ===== 项目扩展 token（Vben 无对应项，按 Vben 调性对齐） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 95%);
+  --primary-soft-strong: hsl(from var(--primary) h s 90%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(216 20% 92%);
+  --text-inverse: hsl(0 0% 100%);
+  --border-strong: hsl(240 5.9% 84%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 20% / 0.05);
+  --shadow: 0 1px 3px hsl(220 40% 20% / 0.06), 0 6px 18px hsl(220 40% 20% / 0.06);
+  --shadow-lg: 0 12px 32px hsl(220 40% 20% / 0.12);
+  --mark-bg: #ffe28a;
+  --mark-text: #3f2d00;
+  --tooltip-bg: hsl(222 47% 11%);
+  --tooltip-text: hsl(0 0% 100%);
+  --tooltip-arrow: hsl(222 47% 11%);
+  --table-head-bg: hsl(216 20.11% 95.47%);
+  --table-row-hover: hsl(216 20% 94%);
+  --table-stripe: hsl(216 20% 97%);
+  --success-soft: hsl(144 57% 94%);
+  --destructive-soft: hsl(359.33 100% 95%);
+  --warning-soft: hsl(42 84% 94%);
+
+}
+[data-theme='dark'][data-accent='gray'], .dark[data-accent='gray'] {
+  --background: hsl(224 71.4% 4.1%);
+  --background-deep: var(--background);
+  --foreground: hsl(210 20% 98%);
+  --card: hsl(224 71.4% 4.1%);
+  --card-foreground: hsl(210 20% 98%);
+  --popover: hsl(224 71.4% 4.1%);
+  --popover-foreground: hsl(210 20% 98%);
+  --primary-foreground: hsl(220.9 39.3% 11%);
+  --secondary: hsl(215 27.9% 16.9%);
+  --secondary-foreground: hsl(210 20% 98%);
+  --muted: hsl(215 27.9% 16.9%);
+  --muted-foreground: hsl(217.9 10.6% 64.9%);
+  --accent: hsl(215 27.9% 16.9%);
+  --accent-foreground: hsl(210 20% 98%);
+  --destructive: hsl(359.21 68.47% 56.47%);
+  --destructive-foreground: hsl(210 20% 98%);
+  --border: hsl(215 27.9% 16.9%);
+  --input: hsl(215 27.9% 16.9%);
+  --ring: hsl(216 12.2% 83.9%);
+  --sidebar: hsl(224 71.4% 4.1%);
+  --sidebar-deep: hsl(224 71.4% 4.1%);
+  --header: hsl(224 71.4% 4.1%);
+  --primary: hsl(0 0% 98%);
+
+  /* ===== 项目扩展 token（深色） ===== */
+  /* 派生自 --primary（CSS Color 5 相对语法），随 data-accent 自动跟随色相 */
+  --primary-strong: hsl(from var(--primary) h s 38%);
+  --primary-soft: hsl(from var(--primary) h s 22%);
+  --primary-soft-strong: hsl(from var(--primary) h s 26%);
+  --brand-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-strong)) 100%);
+  --bg-sunken: hsl(220 13% 11%);
+  --text-inverse: hsl(222.34 10.43% 12.27%);
+  --border-strong: hsl(240 3.7% 28%);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px hsl(220 40% 5% / 0.35);
+  --shadow: 0 2px 6px hsl(220 40% 5% / 0.35), 0 8px 24px hsl(220 40% 5% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(220 40% 5% / 0.45);
+  --mark-bg: hsl(43 60% 30%);
+  --mark-text: hsl(48 100% 75%);
+  --tooltip-bg: hsl(210 30% 92%);
+  --tooltip-text: hsl(222 47% 11%);
+  --tooltip-arrow: hsl(210 30% 92%);
+  --table-head-bg: hsl(220 13.06% 11%);
+  --table-row-hover: hsl(220 13% 13%);
+  --table-stripe: hsl(220 13% 10%);
+  --success-soft: hsl(144 50% 14%);
+  --destructive-soft: hsl(359 70% 18%);
+  --warning-soft: hsl(42 70% 16%);
+
+}

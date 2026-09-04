@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>招标百宝箱 · 招投标咨询在线计算与查询</title>
+    <meta
+      name="description"
+      content="面向工程招标代理、造价咨询从业人员的在线工具：9 套工程计费计算器、建筑安装工程工期定额查询（TY01-89-2016）、评标专家专业分类查询。全部计算在浏览器本地完成，数据不上传服务器。"
+    />
+    <meta name="keywords" content="招标代理服务费,造价咨询服务费,工程设计费,施工监理费,工期定额,评标专家专业分类,工程计费" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="招标百宝箱 · 招投标咨询在线计算与查询" />
+    <meta property="og:description" content="9 套工程计费计算器 + 工期定额查询 + 评标专家分类查询，纯前端离线可用。" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <script>
+      // 主题预置：在 Vue 挂载前同步应用，避免首屏主题闪烁（FOUC）
+      (function () {
+        try {
+          // 应用经 utils/storage.js 写入的是 JSON 字符串（如 "light" 带引号），需 parse 还原
+          var t = null
+          try { t = JSON.parse(localStorage.getItem('app_theme')) } catch (e) { /* noop */ }
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          }
+          var root = document.documentElement
+          root.setAttribute('data-theme', t)
+          // 预置画布底色：CSS 注入前先填上对应主题背景，避免深色刷新出现白/蓝闪屏
+          root.style.backgroundColor = (t === 'dark') ? '#16141a' : '#f2f0f5'
+        } catch (e) {
+          var r = document.documentElement
+          r.setAttribute('data-theme', 'light')
+          r.style.backgroundColor = '#f2f0f5'
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>本工具需要启用 JavaScript 才能使用，请在浏览器中开启后重试。</noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

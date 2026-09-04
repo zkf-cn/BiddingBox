@@ -1,5 +1,23 @@
 {
+  "name": "gongcheng-jifei-gongju",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "招标百宝箱 · 招投标咨询在线计算与查询 SPA",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postbuild": "node scripts/gen-404.mjs",
+    "data": "node scripts/extract-data.mjs"
+  },
   "dependencies": {
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^5.4.11"
   }
 }
