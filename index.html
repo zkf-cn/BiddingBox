@@ -13,7 +13,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="招标百宝箱 · 招投标咨询在线计算与查询" />
     <meta property="og:description" content="9 套工程计费计算器 + 工期定额查询 + 评标专家分类查询，纯前端离线可用。" />
-    <link rel="icon" type="image/svg+xml" href="/BiddingBox/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <script>
       // 主题预置：在 Vue 挂载前同步应用，避免首屏主题闪烁（FOUC）
       (function () {
@@ -21,7 +21,7 @@
           // 应用经 utils/storage.js 写入的是 JSON 字符串（如 "light" 带引号），需 parse 还原
           var t = null
           try { t = JSON.parse(localStorage.getItem('app_theme')) } catch (e) { /* noop */ }
-          // 不跟随系统偏好：无有效保存值时固定为浅色（默认主题）
+          // 纯手动切换：无有效保存值时固定为浅色（不跟随系统偏好）
           if (t !== 'light' && t !== 'dark') t = 'light'
           var root = document.documentElement
           root.setAttribute('data-theme', t)
@@ -34,9 +34,9 @@
         }
       })()
     </script>
-    <script type="module" crossorigin src="/BiddingBox/assets/index-ClAMlu6d.js"></script>
-    <link rel="modulepreload" crossorigin href="/BiddingBox/assets/vendor-vue-TZoaq0kf.js">
-    <link rel="stylesheet" crossorigin href="/BiddingBox/assets/index-BSvvUDxK.css">
+    <script type="module" crossorigin src="/assets/index-CBx4FQFt.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-CTk8BBe5.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-p1Q6ymRz.css">
   </head>
   <body>
     <div id="app"></div>
