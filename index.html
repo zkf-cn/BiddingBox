@@ -21,7 +21,7 @@
           // 应用经 utils/storage.js 写入的是 JSON 字符串（如 "light" 带引号），需 parse 还原
           var t = null
           try { t = JSON.parse(localStorage.getItem('app_theme')) } catch (e) { /* noop */ }
-          // 不跟随系统偏好：无有效保存值时固定为浅色（默认主题）
+          // 纯手动切换：无有效保存值时固定为浅色（不跟随系统偏好）
           if (t !== 'light' && t !== 'dark') t = 'light'
           var root = document.documentElement
           root.setAttribute('data-theme', t)

@@ -1,12 +1,16 @@
 <script setup>
-/** 顶部导航栏：移动端菜单、侧栏切换、全屏、主题切换（日/月形变+圆形扩散动效）、清空缓存 */
+/** 顶部导航栏：移动端菜单、侧栏切换、全屏、主题切换（日/月形变+圆形扩散动效） */
 import { ref, computed, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 import AppIcon from './AppIcon.vue'
+import { iconStroke } from '@/utils/iconStroke'
 import { useTheme } from '@/composables/useTheme'
 import { groupCalcs } from '@/views/calc/defs'
 
-const emit = defineEmits(['toggle-sidebar', 'open-mobile', 'clear-cache'])
+// 顶栏内联 SVG 均为 18px，线宽取全站统一真源（18px → 用户坐标 2.0，与全屏图标一致）
+const ICON_STROKE = iconStroke(18)
+
+const emit = defineEmits(['toggle-sidebar', 'open-mobile'])
 
 const props = defineProps({
   collapsed: { type: Boolean, default: false },
@@ -204,7 +208,7 @@ function onThemeClick(event) {
           <circle cx="40" cy="8" r="11" fill="black" />
         </mask>
         <circle class="theme-toggle__sun" cx="12" cy="12" r="11" mask="url(#theme-toggle-moon)" fill="currentColor" />
-        <g class="theme-toggle__sun-beams" stroke="currentColor" stroke-width="2">
+        <g class="theme-toggle__sun-beams" stroke="currentColor" :stroke-width="ICON_STROKE">
           <line x1="12" x2="12" y1="1" y2="3" />
           <line x1="12" x2="12" y1="21" y2="23" />
           <line x1="4.22" x2="5.64" y1="4.22" y2="5.64" />
@@ -226,7 +230,7 @@ function onThemeClick(event) {
         title="主题配色预设"
         @click="onAccentClick"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" :stroke-width="ICON_STROKE" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="13.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
           <circle cx="17.5" cy="10.5" r="1.2" fill="currentColor" stroke="none" />
           <circle cx="8.5" cy="7.5" r="1.2" fill="currentColor" stroke="none" />
@@ -261,22 +265,18 @@ function onThemeClick(event) {
       :title="isFullscreen ? '退出全屏' : '全屏'"
       @click="toggleFullscreen"
     >
-      <svg class="icon-fullscreen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="icon-fullscreen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" :stroke-width="ICON_STROKE" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 3H5a2 2 0 0 0-2 2v3" />
         <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
         <path d="M3 16v3a2 2 0 0 0 2 2h3" />
         <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
       </svg>
-      <svg class="icon-exit-fullscreen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="icon-exit-fullscreen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" :stroke-width="ICON_STROKE" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 3v3a2 2 0 0 1-2 2H3" />
         <path d="M21 8h-3a2 2 0 0 1-2-2V3" />
         <path d="M3 16h3a2 2 0 0 1 2 2v3" />
         <path d="M16 21v-3a2 2 0 0 1 2-2h3" />
       </svg>
-    </button>
-
-    <button class="btn btn-icon" aria-label="清空本地缓存" title="清空本地缓存" @click="emit('clear-cache')">
-      <AppIcon name="trash" />
     </button>
   </header>
 </template>

@@ -18,6 +18,7 @@
  */
 import { ref, reactive, computed, onMounted } from 'vue'
 import { loadQuota } from '@/data'
+import AppSelect from '@/components/AppSelect.vue'
 import { useToast } from '@/composables/useToast'
 
 const { toast } = useToast()
@@ -47,6 +48,11 @@ onMounted(async () => {
 
 /* ---------------- 顶层部分（下拉框） ---------------- */
 const parts = computed(() => (data.value ? (data.value.tree || []).map(t => t.name) : []))
+/* 下拉选项：Vben 风格 AppSelect 使用 { label, value } 结构 */
+const partOptions = computed(() => [
+  { label: '全部部分', value: '' },
+  ...parts.value.map((p) => ({ label: p, value: p })),
+])
 
 const treeCountText = computed(() => {
   if (!data.value) return ''
@@ -443,10 +449,14 @@ function activate(mv) { activePanel.value = mv }
                 @keydown.enter="search"
                 placeholder="输入定额编号（如 1-15）或关键词（如 剪力墙 5000 / 地下室 2层），空格分隔多条件…"
               >
-              <select v-model="partId" @change="search">
-                <option value="">全部部分</option>
-                <option v-for="p in parts" :key="p" :value="p">{{ p }}</option>
-              </select>
+              <AppSelect
+                v-model="partId"
+                class="sb-select"
+                :options="partOptions"
+                size="form"
+                placeholder="全部部分"
+                @change="search"
+              />
               <button class="btn btn-primary" @click="search">查 询</button>
               <button class="btn" @click="resetFilter">重置</button>
               <div class="hint">支持多关键词组合（空格=且）；输入编号可精确定位；点击左侧目录可浏览整表；点击行末 <b style="color:var(--c-accent)">＋</b> 将该条加入下方统计列表</div>
@@ -524,9 +534,15 @@ function activate(mv) { activePanel.value = mv }
                     <td style="text-align:left" v-html="pathHtml(s.p)"></td>
                     <td style="text-align:left" v-html="paramSummaryHtml(s.p, s.it)"></td>
                     <td>
-                      <select v-if="s.dcs.length" @change="onSelChange(s.si, +$event.target.value)">
-                        <option v-for="c in s.dcs" :key="c" :value="c" :selected="s.sel === c">{{ s.p.headers[c] }}（{{ s.it[c] }}）</option>
-                      </select>
+                      <AppSelect
+                        v-if="s.dcs.length"
+                        class="st-select"
+                        size="sm"
+                        :model-value="s.sel >= 0 ? s.sel : ''"
+                        :options="s.dcs.map((c) => ({ label: `${s.p.headers[c]}（${s.it[c]}）`, value: c }))"
+                        placeholder="请选择"
+                        @change="onSelChange(s.si, +$event)"
+                      />
                       <span v-else style="color:var(--c-muted)">—</span>
                     </td>
                     <td class="days">{{ isNaN(s.val) ? (s.sel >= 0 ? s.it[s.sel] : '—') : s.val }}</td>
@@ -757,6 +773,9 @@ function activate(mv) { activePanel.value = mv }
   outline: none;
   flex: 0 0 auto;
 }
+/* Vben 下拉框（组件根为 div，需显式约束宽度以对齐原原生 select 的布局） */
+.searchbar .sb-select { flex: 0 1 auto; width: auto; min-width: 150px; max-width: 280px; }
+table.st .st-select { width: auto; min-width: 120px; max-width: 240px; }
 /* 按钮样式使用全局 base.css，不再局部覆盖 */
 .hint { width: 100%; font-size: 12px; color: var(--c-muted); line-height: 1.5; }
 
@@ -882,12 +901,13 @@ table.st select { padding: 2px 4px; border: 1px solid var(--c-bd); border-radius
   .results { overflow-x: auto; }
   .searchbar { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 10px; align-items: center; }
   .searchbar input[type=text] { flex: 1 1 100%; width: 100%; min-width: 0; font-size: 15px; padding: 10px 12px; }
-  .searchbar select { flex: 1 1 0; max-width: none; font-size: 13px; padding: 8px 6px; min-width: 0; width: auto; }
+  .searchbar select, .searchbar .sb-select { flex: 1 1 0; max-width: none; font-size: 13px; min-width: 0; width: auto; }
   .searchbar .btn { flex: 0 0 62px; min-width: 0; padding: 9px 0; font-size: 13px; }
   .hint { font-size: 12px; line-height: 1.5; }
   .addbtn { width: 32px; height: 28px; font-size: 15px; }
   .st-del { font-size: 18px; padding: 4px 8px; }
   table.st select { padding: 5px 6px; font-size: 14px; }
+  table.st .st-select { min-width: 110px; max-width: 190px; }
   .stats-foot { flex-wrap: wrap; row-gap: 6px; }
   .stats-foot .total { flex: 1 1 100%; text-align: right; margin-left: 0; padding-top: 4px; border-top: 1px dashed var(--c-bd); }
   .mtabs { display: flex; }

@@ -122,7 +122,7 @@ const STORAGE_ROWS = [
         </div>
         <div class="alert alert-info mt-16">
           <div>
-            以上 4 项均保存在你浏览器的 localStorage 中，点击顶部导航栏的「清空本地缓存」将一次性删除全部内容。
+            以上 4 项均保存在你浏览器的 localStorage 中，仅服务于当前浏览器的本站页面，不会上传服务器。
             侧边栏折叠状态属于临时界面状态，保存在 sessionStorage，不在此列。
           </div>
         </div>

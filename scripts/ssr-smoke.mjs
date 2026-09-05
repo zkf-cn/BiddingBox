@@ -32,7 +32,7 @@ globalThis.localStorage = makeStorage()
 globalThis.sessionStorage = makeStorage()
 globalThis.window = globalThis
 globalThis.document = {
-  documentElement: { setAttribute() {}, getAttribute: () => null, classList: { add() {}, remove() {} } },
+  documentElement: { setAttribute() {}, getAttribute: () => null, classList: { add() {}, remove() {} }, style: {} },
   title: '',
   querySelector: () => null,
   getElementById: () => null,

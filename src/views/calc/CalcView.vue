@@ -8,6 +8,7 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import AppIcon from '@/components/AppIcon.vue'
+import AppSelect from '@/components/AppSelect.vue'
 import { getCalcDef } from './defs'
 import { validateNumber, validatePercent } from '@/utils/validate'
 import { applyDiscount, round } from '@/utils/fee'
@@ -348,9 +349,13 @@ async function exportResult() {
         <div class="card-body">
           <div v-for="sel in def.selects" :key="sel.key" class="field">
             <label class="field-label" :for="`sel-${def.id}-${sel.key}`">{{ sel.label }}</label>
-            <select :id="`sel-${def.id}-${sel.key}`" v-model="selects[sel.key]" class="input">
-              <option v-for="opt in optionsOf(sel)" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-            </select>
+            <AppSelect
+              :id="`sel-${def.id}-${sel.key}`"
+              v-model="selects[sel.key]"
+              :options="optionsOf(sel)"
+              size="form"
+              :placeholder="`请选择${sel.label}`"
+            />
           </div>
 
           <div v-if="!amountHidden" class="field">

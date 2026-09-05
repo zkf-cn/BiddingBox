@@ -6,6 +6,7 @@
  */
 import { computed, onMounted, ref, watch } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
+import AppSelect from '@/components/AppSelect.vue'
 import { loadExpert } from '@/data'
 import { DATA_VERSIONS, EXPORT_LIMIT } from '@/config'
 import { exportWorkbook, timestamped } from '@/utils/exportXlsx'
@@ -46,6 +47,20 @@ const lv1Obj = computed(() => raw.value.find((c) => c.name === lv1.value) || nul
 const lv2List = computed(() => (lv1Obj.value ? lv1Obj.value.subcategories || [] : []))
 const lv2Obj = computed(() => lv2List.value.find((s) => s.name === lv2.value) || null)
 const lv3List = computed(() => (lv2Obj.value ? lv2Obj.value.specialties || [] : []))
+
+/* 下拉选项：Vben 风格 AppSelect 使用 { label, value } 结构；首项为空值项（全部 / 提示态） */
+function toOptions(list) {
+  return list.map((o) => ({ label: `${o.code} · ${o.name}`, value: o.name }))
+}
+const lv1Options = computed(() => [{ label: '全部大类', value: '' }, ...toOptions(lv1List.value)])
+const lv2Options = computed(() => [
+  { label: lv1.value ? '全部' : '请先选择大类', value: '' },
+  ...toOptions(lv2List.value),
+])
+const lv3Options = computed(() => [
+  { label: lv2.value ? '全部' : '请先选择二级', value: '' },
+  ...toOptions(lv3List.value),
+])
 const lv3Obj = computed(() => lv3List.value.find((s) => s.name === lv3.value) || null)
 
 watch(lv1, () => {
@@ -219,24 +234,29 @@ function addSelectedToCart() {
           </div>
           <div class="field mb-0">
             <label class="field-label" for="e-lv1">一级（大类）</label>
-            <select id="e-lv1" v-model="lv1" class="input">
-              <option value="">全部大类</option>
-              <option v-for="o in lv1List" :key="o.code" :value="o.name">{{ o.code }} · {{ o.name }}</option>
-            </select>
+            <AppSelect id="e-lv1" v-model="lv1" :options="lv1Options" size="form" placeholder="全部大类" />
           </div>
           <div class="field mb-0">
             <label class="field-label" for="e-lv2">二级</label>
-            <select id="e-lv2" v-model="lv2" class="input" :disabled="!lv1">
-              <option value="">{{ lv1 ? '全部' : '请先选择大类' }}</option>
-              <option v-for="o in lv2List" :key="o.code" :value="o.name">{{ o.code }} · {{ o.name }}</option>
-            </select>
+            <AppSelect
+              id="e-lv2"
+              v-model="lv2"
+              :options="lv2Options"
+              size="form"
+              :disabled="!lv1"
+              :placeholder="lv1 ? '全部' : '请先选择大类'"
+            />
           </div>
           <div class="field mb-0">
             <label class="field-label" for="e-lv3">三级（专业）</label>
-            <select id="e-lv3" v-model="lv3" class="input" :disabled="!lv2">
-              <option value="">{{ lv2 ? '全部' : '请先选择二级' }}</option>
-              <option v-for="o in lv3List" :key="o.code" :value="o.name">{{ o.code }} · {{ o.name }}</option>
-            </select>
+            <AppSelect
+              id="e-lv3"
+              v-model="lv3"
+              :options="lv3Options"
+              size="form"
+              :disabled="!lv2"
+              :placeholder="lv2 ? '全部' : '请先选择二级'"
+            />
           </div>
         </div>
         <div class="row mt-16 text-sm text-muted">
