@@ -1,1 +1,0 @@
-import{f as o}from"./index-CBx4FQFt.js";function e(){return o(()=>import("./data-quota-CB16GCdi.js"),[]).then(t=>t.default||t)}function _(){return o(()=>import("./data-expert-C_DTk6Py.js"),[]).then(t=>t.default||t)}export{_ as a,e as l};
